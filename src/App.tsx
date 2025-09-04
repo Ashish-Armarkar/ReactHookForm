@@ -1,9 +1,15 @@
 import './App.css'
+import InputField from './Atoms/InputFiled'
+import MasterLayout from './Layouts/MasterLayout'
 
 function App() {
 
   return (
-    <>Hello</>
+    <>
+
+    <MasterLayout/>
+    {/* <InputField placeholder='First Name' styleOfField='underlined'/> */}
+    </>
   )
 }
 
