@@ -1,6 +1,7 @@
 import './App.css'
-import InputField from './Atoms/InputFiled'
 import MasterLayout from './Layouts/MasterLayout'
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+// import '@ant-design/v5-patch-for-react-19';  
 
 function App() {
 
@@ -8,7 +9,6 @@ function App() {
     <>
 
     <MasterLayout/>
-    {/* <InputField placeholder='First Name' styleOfField='underlined'/> */}
     </>
   )
 }
