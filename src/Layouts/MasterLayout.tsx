@@ -10,7 +10,12 @@ import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import TableComponent from "../Components/TableCompoment";
 import Buttons from "../Atoms/Buttons";
-import { useUsers } from "../Store/Store";
+import {
+  useModalStore,
+  useUsers,
+  type useModalStoreType,
+} from "../Store/Store";
+import FormComponents from "../Components/FormComponents";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -52,14 +57,15 @@ const MasterLayout = () => {
   } = theme.useToken();
 
   const createUserState = useUsers((state: any) => state.createUser);
+  const openModal = useModalStore(
+    (state: useModalStoreType) => state.openModal
+  );
 
-  function createUserApi() {
-    createUserState({
-      name: "Nicolas",
-      email: "nico@gmail.com",
-      password: "1234",
-      avatar: "https://picsum.photos/800",
-    });
+  const openTheModal = () => {
+    openModal();
+  };
+  function createUserApi(data: any) {
+    createUserState(data);
   }
 
   return (
@@ -78,6 +84,8 @@ const MasterLayout = () => {
         />
       </Sider>
       <Layout>
+        <FormComponents handleSubmission={createUserApi} />
+
         <Header style={{ padding: 0, background: colorBgContainer }}>
           React Hook From + Zustand + Ant Design
         </Header>
@@ -87,7 +95,12 @@ const MasterLayout = () => {
               style={{ margin: "10px 0" }}
               items={[{ title: "User Data" }]}
             />
-            <Buttons myOnClick={createUserApi} />
+            <Buttons
+              myOnClick={openTheModal}
+              label="Create User"
+              btnColor="volcano"
+              htmlType="button"
+            />
           </div>
 
           <div

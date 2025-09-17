@@ -9,7 +9,6 @@ interface User {
   name: string;
   avatar: string;
   role: string;
-
 }
 
 interface UserStore {
@@ -52,5 +51,26 @@ export const useUsers = create<UserStore>((set) => ({
     } finally {
       set({ loading: false });
     }
+  },
+}));
+
+export interface useModalStoreType {
+  isOpenModal: boolean;
+  isLoading: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
+export const useModalStore = create<useModalStoreType>((set) => ({
+  isOpenModal: false,
+  isLoading: false,
+  openModal: () => {
+    set({ isOpenModal: true });
+    set({ isLoading: true });
+    setTimeout(() => {
+      set({ isLoading: false });
+    }, 2000);
+  },
+  closeModal: () => {
+    set({ isLoading: false }), set({ isOpenModal: false });
   },
 }));
