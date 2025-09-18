@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
+import type { GetProp, UploadFile, UploadProps } from "antd";
 
 const baseURL = "https://api.escuelajs.co/api/v1";
 

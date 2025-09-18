@@ -56,7 +56,6 @@ const MasterLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const createUserState = useUsers((state: any) => state.createUser);
   const openModal = useModalStore(
     (state: useModalStoreType) => state.openModal
   );
@@ -64,9 +63,6 @@ const MasterLayout = () => {
   const openTheModal = () => {
     openModal();
   };
-  function createUserApi(data: any) {
-    createUserState(data);
-  }
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -84,7 +80,7 @@ const MasterLayout = () => {
         />
       </Sider>
       <Layout>
-        <FormComponents handleSubmission={createUserApi} />
+        <FormComponents />
 
         <Header style={{ padding: 0, background: colorBgContainer }}>
           React Hook From + Zustand + Ant Design

@@ -34,13 +34,25 @@ const columns: ColumnsType<UserType> = [
     title: "Role",
     dataIndex: "role",
     key: "role",
-    render: (role:any) => <Tag color={role === "customer" ? "green" : "blue"}>{role}</Tag>,
+    render: (role: any) => (
+      <Tag color={role === "customer" ? "green" : "blue"}>{role}</Tag>
+    ),
   },
   {
     title: "Avatar",
     dataIndex: "avatar",
     key: "avatar",
-    render: (url:any) => <img src={url} alt="avatar" width={40} style={{ borderRadius: "50%" }} />,
+    render: (url: any) => {
+      console.log("url", url);
+      return (
+        <img
+          src={`${url}`}
+          alt="avatar"
+          width={40}
+          style={{ borderRadius: "50%" }}
+        />
+      );
+    },
   },
   {
     title: "Created At",
@@ -55,7 +67,7 @@ const columns: ColumnsType<UserType> = [
   {
     title: "Action",
     key: "action",
-    render: (_:any, record:any) => (
+    render: (_: any, record: any) => (
       <Space size="middle">
         <a>Edit</a>
         <a>Delete</a>
@@ -68,13 +80,13 @@ const TableComponent: React.FC = () => {
   const fetchUsers = useUsers((state: any) => state.fetchUsers);
   const usersList = useUsers((state: any) => state.usersList);
   const updateCall = useUsers((state: any) => state.update);
-  
 
   useEffect(() => {
     fetchUsers();
   }, [updateCall]);
 
-return <Table<UserType> columns={columns} dataSource={usersList} rowKey="id" />;
-
+  return (
+    <Table<UserType> columns={columns} dataSource={usersList} rowKey="id" />
+  );
 };
 export default TableComponent;
